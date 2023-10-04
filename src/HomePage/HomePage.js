@@ -14,13 +14,13 @@ function HomePage() {
         {
           data: [],
           backgroundColor: [
-            '#ffcd56',
-            '#ff6384',
-            '#36a2eb',
-            '#fd6b19',
-            '#ff5733',
-            '#4caf50',
-            '#9c27b0',
+            '#6FC3DF',
+            '#9A5DFA',
+            '#FFA800',
+            '#73E8D0',
+            '#FF5F6D',
+            '#60C4A8',
+            '#E68FFF'
           ],
         },
       ],
@@ -29,7 +29,7 @@ function HomePage() {
 
     function createChart() {
       var ctx = canvasRef.current.getContext("2d");
-      var myPieChart = new ChartJS(ctx, { // Use ChartJS instead of Chart
+      var myPieChart = new ChartJS(ctx, { 
         type: "pie",
         data: dataSource,
       });
@@ -54,43 +54,43 @@ function HomePage() {
         });
       }
     
-      //const svgRef = useRef(null);
+
     
       function createD3Chart(data) {
         const svg = d3.select(svgRef.current);
       
-        // Get the width and height of the SVG element
+
         const width = 500;
         const height = 500;
         const radius = Math.min(width, height) / 2;
       
-        // Set the SVG element's size
+
         svg.attr("width", width).attr("height", height);
       
-        // Create a group element for the chart and center it within the SVG
+
         const g = svg
           .append("g")
           .attr("transform", `translate(${width / 2},${height / 2})`);
       
-        // Define a color scale
+   
         const color = d3
           .scaleOrdinal()
           .domain(data.map((d) => d.title))
           .range(["#ccff66", "#ff0066", "#00ff00", "#6600ff", "#003300", "#ff0000", "#ff8c00"]);
     
       
-        // Define the pie generator
+  
         const pieGenerator = pie().value((d) => d.budget);
       
-        // Define the path generator
+
         const pathGenerator = arc()
           .outerRadius(radius * 0.6)
           .innerRadius(radius * 0.3);
       
-        // Generate the pie chart data
+
         const arcs = pieGenerator(data);
       
-        // Create and style the chart
+
         const arcPaths = g
           .selectAll("path")
           .data(arcs)
@@ -101,7 +101,7 @@ function HomePage() {
           .attr("stroke", "white")
           .style("stroke-width", "2px");
       
-        // Adjust the chart positioning within the SVG container
+
         g.attr("transform", `translate(${width / 2},${height / 2})`);
       
         console.log("SVG Width:", width);
